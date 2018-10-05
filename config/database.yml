@@ -23,7 +23,11 @@ default: &default
 
 development:
   <<: *default
-  database: GemProject_development
+  host: localhost
+  database: new
+  username: postgres
+  password: 'password'
+
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
