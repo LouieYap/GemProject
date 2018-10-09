@@ -24,7 +24,7 @@ default: &default
 development:
   <<: *default
   host: localhost
-  database: new
+  database: rails
   username: postgres
   password: 'password'
 
