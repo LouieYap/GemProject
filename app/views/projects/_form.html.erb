@@ -1,0 +1,24 @@
+<% if project.errors.any? %>
+  <div id="error_explanation">
+    <h3><span class="text-danger"><%= pluralize(project.errors.count, "error") %> prohibited this project from being saved:</span></h3>
+    <ul>
+      <% project.errors.full_messages.each do |msg| %>
+        <span class="text-danger"><li><%= msg %></li></span>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_for (project) do |p|%>
+  <p>
+    <%= p.label :name %><br>
+    <%= p.text_field :name %>
+  </p>
+
+  <p>
+    <%= p.label :description %><br>
+    <%= p.text_area :description, size: "60x10" %>
+  </p>
+
+  <%= p.submit :class => 'btn btn-primary'%>
+<% end %>

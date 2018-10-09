@@ -22,7 +22,9 @@
             <span><%=p.description %></span>
           </div>
 
-          <a href="#" style="border-bottom:2px solid #0062cc; color: #0062cc">Details</a> | <a href="#" style="border-bottom:2px solid red; color: red">Delete</a>
+
+          <%= link_to "Edit", "projects/#{p.id}", {:style => "border-bottom:2px solid #0062cc; color: #0062cc"}%> |
+          <%= link_to "Delete", "projects/#{p.id}", {:style => "border-bottom:2px solid #cc0000; color: #cc0000",  method: :delete, data: { confirm: "Are you sure you want to delete this project?" } }%>
 
         </div>
       </div>
