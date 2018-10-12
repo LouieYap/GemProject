@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   resources :projects
+  resources :tasks
   get '/projects', to: 'projects#index'
   get '/about', to: 'about#index'
   get '/dashboard', to: 'dashboard#index'

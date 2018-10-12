@@ -42,9 +42,11 @@ ActiveRecord::Schema.define(version: 2018_10_05_060241) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "project_id"
-    t.bigint "user_id"
+    t.bigint "assigned_to_id"
+    t.bigint "created_by_id"
+    t.index ["assigned_to_id"], name: "index_tasks_on_assigned_to_id"
+    t.index ["created_by_id"], name: "index_tasks_on_created_by_id"
     t.index ["project_id"], name: "index_tasks_on_project_id"
-    t.index ["user_id"], name: "index_tasks_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -57,6 +59,10 @@ ActiveRecord::Schema.define(version: 2018_10_05_060241) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string "unconfirmed_email"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -64,5 +70,6 @@ ActiveRecord::Schema.define(version: 2018_10_05_060241) do
   add_foreign_key "comments", "tasks"
   add_foreign_key "comments", "users"
   add_foreign_key "tasks", "projects"
-  add_foreign_key "tasks", "users"
+  add_foreign_key "tasks", "users", column: "assigned_to_id"
+  add_foreign_key "tasks", "users", column: "created_by_id"
 end

@@ -1,4 +1,4 @@
-class AboutController < ApplicationController
+class AboutController < SecureController
   def index
   end
 end
