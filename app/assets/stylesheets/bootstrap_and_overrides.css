@@ -109,3 +109,23 @@ span{
 .fa{
     color:#4183D7;
 }
+
+.Burnaby {
+    border-color: #e0d1d6;
+    border-width:5px;
+    background: #c2a3ad;
+}
+
+.Lilla {border-color: #f0d1d6;
+    border-width:5px;
+    background: #e0a3ad;
+}
+
+.Brendin {border-color: #c7e0d1;
+    border-width:5px;
+    background: #8fc2a3;
+}
+.Jessika {border-color: #d1d6e0;
+    border-width:5px;
+    background: #a3adc2;
+}

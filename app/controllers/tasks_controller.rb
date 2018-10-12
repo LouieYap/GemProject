@@ -8,8 +8,9 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new(task_params)
-    @task.project = Project.find((task_params[:project_id]))
+    #@task.project = Project.find((task_params[:project_id]))
     @task.created_by = current_user
+    @task.assigned_to = current_user
 
     if @task.save
       flash[:notice] = "Task has been created."
@@ -32,13 +33,20 @@ class TasksController < ApplicationController
 
     if  @task.update(task_params)
       flash[:notice] = "Task has been updated."
-      redirect_to task_path
+      redirect_to dashboard_path
 
     else
       flash[:danger] = "An error occurred."
       render "edit"
     end
 
+  end
+
+  def destroy
+    @task = Task.find(params[:id])
+    @task.destroy
+    flash[:notice] = "Task has been deleted."
+    redirect_to dashboard_path
   end
 
   private

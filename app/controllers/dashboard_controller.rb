@@ -1,9 +1,7 @@
 class DashboardController < SecureController
 
   def index
-
-    @tasks = Task.all
-
+    @tasks = Task.order_by_priority
 
   end
 end

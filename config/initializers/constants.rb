@@ -1,0 +1,1 @@
+PRIORITY_ORDERS = ['severe', 'major', 'minor'].freeze
