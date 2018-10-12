@@ -1,0 +1,48 @@
+<% if task.errors.any? %>
+  <div id="error_explanation">
+    <h3><span class="text-danger"><%= pluralize(project.errors.count, "error") %> prohibited this project from being saved:</span></h3>
+    <ul>
+      <% project.errors.full_messages.each do |msg| %>
+        <span class="text-danger"><li><%= msg %></li></span>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+<%= form_for (task) do |t|%>
+    <p>
+      <%= t.label :name %><br>
+      <%= t.text_field :name  %>
+    </p>
+
+    <p>
+      <%= t.label :description %><br>
+      <%= t.text_area :description, size: "60x10" %>
+    </p>
+
+  <p>
+    <%= t.label :project %><br>
+    <%= t.collection_select(:project_id, Project.all, :id, :name) %>
+  </p>
+
+
+  <p>
+    <%= t.label :category %><br>
+    <%= t.select :category, [['Development','development'],['Testing','testing'],['Release','release']] %>
+  </p>
+
+
+  <p>
+    <%= t.label :status %><br>
+    <%= t.select :status, [['Open','open'],['Closed','closed'],['Deferred','deferred'],['Monitoring','monitoring']] %>
+  </p>
+
+
+  <p>
+    <%= t.label :priority %><br>
+    <%= t.select :status, [['Minor','minor'],['Major','major'],['Severe','severe']] %>
+  </p>
+
+
+  <%= t.submit :class => 'btn btn-primary'%>
+<% end %>
+

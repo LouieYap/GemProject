@@ -8,17 +8,17 @@
     </ul>
   </div>
 <% end %>
-
 <%= form_for (project) do |p|%>
-  <p>
-    <%= p.label :name %><br>
-    <%= p.text_field :name %>
-  </p>
+    <p>
+      <%= p.label :name %><br>
+      <%= p.text_field :name  %>
+    </p>
 
-  <p>
-    <%= p.label :description %><br>
-    <%= p.text_area :description, size: "60x10" %>
-  </p>
+    <p>
+      <%= p.label :description %><br>
+      <%= p.text_area :description, size: "60x10" %>
+    </p>
 
-  <%= p.submit :class => 'btn btn-primary'%>
+    <%= p.submit :class => 'btn btn-primary'%>
 <% end %>
+

@@ -7,9 +7,10 @@
     </button>
     <a class="navbar-brand" href="#">GemProject</a>
     <div class="navbar-collapse collapse navbar-responsive-collapse">
-      <ul class="nav navbar-nav">
-        <li><%= link_to "logout", destroy_user_session_path, method: :delete %></li>
-      </ul>
+        <div class="navbar-right">
+          <p class="navbar-text">  Signed in as <%= current_user.email %> </p>
+          <p class="navbar-text"> <%= link_to "logout", destroy_user_session_path, method: :delete %></p>
+        </div>
     </div>
 
 
@@ -27,9 +28,13 @@
           <li>
             <%= link_to "Project", projects_path %>
           </li>
+
           <li>
             <%= link_to "About", about_path %>
           </li>
+
+
+
           <li>
             <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pages</a>
             <ul class="collapse list-unstyled" id="pageSubmenu">
@@ -43,6 +48,9 @@
                 <a href="#">Page 3</a>
               </li>
             </ul>
+          </li>
+          <li>
+            <%= link_to "Create Task", {controller: "tasks", action: "new"}, {:class => "btn btn-success"}%>
           </li>
         </ul>
       </nav>

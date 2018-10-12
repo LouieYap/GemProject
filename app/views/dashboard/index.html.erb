@@ -1,3 +1,16 @@
 <h1>Dashboard</h1>
 
 
+<% @tasks.each do |t| %>
+
+  <div class="text">
+     <span><%=t.name %></span>
+  </div>
+  <div class="text">
+    <span><%=t.created_by %></span>
+  </div>
+  <div class="text">
+    <span><%=t.priority %></span>
+  </div>
+
+<% end %>
