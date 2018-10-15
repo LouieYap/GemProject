@@ -50,7 +50,7 @@ ActiveRecord::Schema.define(version: 2018_10_05_060241) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.boolean "admin"
+    t.boolean "admin", default: false
     t.string "phone_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
