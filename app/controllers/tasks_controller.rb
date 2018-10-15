@@ -1,5 +1,8 @@
 class TasksController < ApplicationController
+  before_action :set_task, except: [:index, :create, :new]
+
   def index
+     @tasks = Task.order_by_priority
   end
 
   def new
@@ -7,7 +10,7 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new(task_params)
+    @task = Task.new(task_params) #question: project_id is an integer how come @task.project is properly set by this?
     #@task.project = Project.find((task_params[:project_id]))
     @task.created_by = current_user
     @task.assigned_to = current_user
@@ -21,16 +24,12 @@ class TasksController < ApplicationController
   end
 
   def show
-    @task = Task.find(params[:id])
   end
 
   def edit
-    @task = Task.find(params[:id])
   end
 
   def update
-    @task = Task.find(params[:id])
-
     if  @task.update(task_params)
       flash[:notice] = "Task has been updated."
       redirect_to dashboard_path
@@ -43,7 +42,6 @@ class TasksController < ApplicationController
   end
 
   def destroy
-    @task = Task.find(params[:id])
     @task.destroy
     flash[:notice] = "Task has been deleted."
     redirect_to dashboard_path
@@ -51,7 +49,11 @@ class TasksController < ApplicationController
 
   private
   def task_params
-    params.require(:task).permit(:name, :description, :project_id, :category, :status, :priority)
+    params.require(:task).permit(:name, :description, :project_id, :assigned_to_id, :category, :status, :priority)
+  end
+
+  def set_task
+    @task = Task.find(params[:id])
   end
 
 end

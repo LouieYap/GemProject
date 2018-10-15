@@ -5,3 +5,10 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+#
+#
+#
+unless User.exists?(email: "admin@gem.com")
+  User.create!(email: "admin@gem.com", password: "password", admin: true)
+  User.create!(email: "another_user@gmail.com", password: "password")
+end
