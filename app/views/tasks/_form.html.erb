@@ -20,6 +20,11 @@
     </p>
 
   <p>
+    <%= t.label :due_date %><br>
+    <%= t.text_field :due_date, "data-provide" => 'datepicker' %>
+  </p>
+
+  <p>
     <%= t.label :project %><br>
     <%= t.collection_select(:project_id, Project.all, :id, :name) %>
   </p>

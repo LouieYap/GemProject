@@ -15,7 +15,7 @@ class TasksController < ApplicationController
     @task.created_by = current_user
     @task.assigned_to = current_user
 
-    if @task.save
+    if @task.save!
       flash[:notice] = "Task has been created."
     else
       flash[:danger] = "An error occurred."
@@ -59,7 +59,7 @@ class TasksController < ApplicationController
 
   private
   def task_params
-    params.require(:task).permit(:name, :description, :project_id, :assigned_to_id, :category, :status, :priority)
+    params.require(:task).permit(:name, :description, :project_id, :assigned_to_id, :due_date, :category, :status, :priority)
   end
 
   def set_task
