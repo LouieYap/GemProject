@@ -27,6 +27,12 @@ class TasksController < ApplicationController
   end
 
   def edit
+    unless @task.assigned_to_id == current_user.id || current_user.admin
+      flash[:danger] = "Cannot edit this task."
+      redirect_to dashboard_path
+    end
+
+
   end
 
   def update
@@ -42,6 +48,10 @@ class TasksController < ApplicationController
   end
 
   def destroy
+    unless @task.assigned_to_id == current_user.id || current_user.admin
+      flash[:danger] = "Cannot delete this task."
+      redirect_to dashboard_path
+    end
     @task.destroy
     flash[:notice] = "Task has been deleted."
     redirect_to dashboard_path
