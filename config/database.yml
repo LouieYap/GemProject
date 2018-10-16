@@ -25,8 +25,8 @@ development:
   <<: *default
   host: localhost
   database: rails
-  username: postgres
-  password: 'password'
+  username: pguser
+  password: pguser
 
 
   # The specified database role being used to connect to postgres.
@@ -61,7 +61,9 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: GemProject_test
+  database: rails
+  username: pguser
+  password: pguser
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is

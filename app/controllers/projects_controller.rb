@@ -1,5 +1,5 @@
 class ProjectsController < SecureController
-  before_action :set_project, except: [:index, :create, :new]
+  before_action :set_project, except: [:index, :create, :new, :show]
 
   def index
   @projects = Project.all
@@ -7,6 +7,7 @@ class ProjectsController < SecureController
 
   def new
    @project = Project.new
+   authorize! :new, @project
   end
 
   def create
@@ -22,6 +23,7 @@ class ProjectsController < SecureController
 
     end
   end
+
   def show
   end
 

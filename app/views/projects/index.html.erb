@@ -1,7 +1,8 @@
 <h1>Projects</h1>
 
-
-<%= link_to "Create Project", {action: "new"}, {:class => "btn btn-success"}%>
+<% if can? :new, Project %>
+  <%= link_to "Create Project", {action: "new"}, {:class => "btn btn-success"}%>
+<% end %>
 
 <div class="box">
   <div class="container">
@@ -22,10 +23,10 @@
             <span><%=p.description %></span>
           </div>
 
-
-          <%= link_to "Edit", "projects/#{p.id}/edit", {:style => "border-bottom:2px solid #0062cc", :class => "btn-link"}%> |
-          <%= link_to "Delete", p, {:style => "border-bottom:2px solid #cc0000; color: #cc0000",  method: :delete, data: { confirm: "Are you sure you want to delete this project?" } }%>
-
+          <% if can? :new, Project %>
+            <%= link_to "Edit", "projects/#{p.id}/edit", {:style => "border-bottom:2px solid #0062cc", :class => "btn-link"}%> |
+            <%= link_to "Delete", p, {:style => "border-bottom:2px solid #cc0000; color: #cc0000",  method: :delete, data: { confirm: "Are you sure you want to delete this project?" } }%>
+          <% end %>
         </div>
       </div>
       <% end %>
