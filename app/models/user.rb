@@ -5,4 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :tasks
 
+  def admin?
+    self.admin
+  end
 end
