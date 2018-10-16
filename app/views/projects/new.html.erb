@@ -1,5 +1,8 @@
 <h1>Create Project</h1>
 
-<%= render "form", project: @project %>
+<% if can? :new, Project %>
+  <%= render "form", project: @project %>
+<% end %>
+
 
 

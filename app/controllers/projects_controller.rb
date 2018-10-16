@@ -1,6 +1,5 @@
 class ProjectsController < SecureController
   before_action :set_project, except: [:index, :create, :new]
-  load_and_authorize_resource
 
   def index
   @projects = Project.all
