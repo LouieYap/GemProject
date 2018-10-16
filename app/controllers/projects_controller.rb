@@ -54,7 +54,7 @@ class ProjectsController < SecureController
   end
 
   def set_project
-    @task = Project.find(params[:id])
+    @project = Project.find(params[:id])
   end
 
 end

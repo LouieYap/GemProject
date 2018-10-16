@@ -7,6 +7,7 @@ ruby '2.5.1'
 gem 'rails', '~> 5.2.1'
 gem 'twitter-bootstrap-rails'
 gem 'jquery-rails'
+gem 'bootstrap-datepicker-rails'
 # Use postgresql as the database for Active Record
 gem 'devise'
 gem 'devise-bootstrap-views'
