@@ -1,4 +1,53 @@
 <h1>Edit Details</h1>
 
-<p><%=@task.name %></p>
-<p><%=@task.project.name %></p>
+<p>
+  <b>Name:  </b><%= @task.name %></br>
+  <b>Description:  </b><%= @task.description %></br>
+  <b>Due date:  </b><%= @task.due_date %></br>
+  <b>Project:  </b><%= @task.project.name %></br>
+  <b>Assigned to:  </b><%= @task.assigned_to.email %></br>
+  <b>Category:  </b><%= @task.category %></br>
+  <b>Status:  </b><%= @task.status %></br>
+  <b>Priority:  </b><%= @task.priority %></br>
+</p>
+
+<h1>Comments:</h1>
+
+<% @task.comments.each do |c| %>
+  <div class="well well-sm">
+    <b>From:  </b><%= c.user_id %></br>
+    <b>Date:  </b><%= c.updated_at %></br>
+    <b>Message:  </b><%= c.description %></br>
+  </div>
+<% end %>
+
+<div class="modal modal-container" id="comment-modal" title="New Comment">
+  <div class="modal-header">
+    <button aria-hidden="true" class="close" data-dismiss="modal" type="button">×</button>
+    <h3 id="myModalLabel">New Comment</h3>
+  </div>
+  <div class="modal-body">
+    <%# form_for @comment, url: url_for(controller: 'comment', action: 'new') do |c| %>
+    <%= form_for @comment, :url => url_for(:controller => 'comment', :action => 'create') do |c| %>
+      <h1>Hey:</h1>
+      <p>
+    <%= c.text_area :description, size: "60x10" %>
+      </p>
+    <%= c.submit :class => 'btn btn-primary'%>
+    <% end %>
+    <div class="modal-footer">
+      <button aria-hidden="true" class="btn" data-dismiss="modal">Close</button>
+    </div>
+  </div>
+
+</div>
+
+<%# form_for @comment, url: url_for(controller: 'comment', action: 'new') do |c| %>
+<!--  <h1>Hey:</h1>-->
+<!--  <p>-->
+    <%#= c.text_area :description, size: "60x10" %>
+<!--  </p>-->
+  <%#= c.submit :class => 'btn btn-primary'%>
+<%# end %>
+
+<%= link_to "New Comment", "#comment-modal", :class => "btn btn-success", "data-toggle" => "modal" %>

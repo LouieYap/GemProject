@@ -2,7 +2,7 @@
 <% tasks.each do |t| %>
   <div class="well well-sm">
 
-    <h4><b><%=t.name %></b></h4>
+    <h4><b><%= link_to t.name, t, {:class => "btn-link"}%></b></h4>
     <% if defined?(dashboard) && !dashboard %>
       <b>Assigned To: </b>
       <% if t.assigned_to.present? %>
