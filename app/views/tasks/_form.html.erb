@@ -1,8 +1,8 @@
 <% if task.errors.any? %>
   <div id="error_explanation">
-    <h3><span class="text-danger"><%= pluralize(project.errors.count, "error") %> prohibited this project from being saved:</span></h3>
+    <h3><span class="text-danger"><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</span></h3>
     <ul>
-      <% project.errors.full_messages.each do |msg| %>
+      <% task.errors.full_messages.each do |msg| %>
         <span class="text-danger"><li><%= msg %></li></span>
       <% end %>
     </ul>
@@ -21,7 +21,7 @@
 
   <p>
     <%= t.label :project %><br>
-    <%= t.collection_select(:project_id, Project.all, :id, :name) %>
+    <%= t.collection_select(:project_id, Project.all, :id, :name, {:include_blank => '--Select Project--'}) %>
   </p>
 
   <% if defined?(edit) && edit && admin_user?%>
