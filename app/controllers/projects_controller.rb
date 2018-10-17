@@ -1,5 +1,5 @@
 class ProjectsController < SecureController
-  before_action :set_project, except: [:index, :create, :new, :show]
+  before_action :set_project, except: [:index, :create, :new]
 
   def index
   @projects = Project.all
@@ -54,7 +54,7 @@ class ProjectsController < SecureController
   end
 
   def set_project
-    @task = Project.find(params[:id])
+    @project = Project.find(params[:id])
   end
 
 end

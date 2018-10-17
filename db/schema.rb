@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 2018_10_05_060241) do
     t.string "name"
     t.string "description"
     t.string "category"
-    t.date "due_date"
+    t.string "due_date"
     t.string "status"
     t.string "priority"
     t.datetime "created_at", null: false
