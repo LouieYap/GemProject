@@ -3,7 +3,10 @@ class Task < ApplicationRecord
   belongs_to :assigned_to, class_name: "User", optional: true
   belongs_to :created_by, class_name: "User"
   has_many :comments
-  validates :name, presence: true
+  validates :name, :due_date, :category, :status, :priority, presence: true
+  # validates :category, presence: true
+  # validates :status, presence: true
+  # validates :prioriy, presence: true
 
   scope :order_by_priority, -> {
     order_by = ['CASE']

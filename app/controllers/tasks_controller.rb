@@ -15,11 +15,11 @@ class TasksController < ApplicationController
     @task.created_by = current_user
     @task.assigned_to = current_user
 
-    if @task.save!
+    if @task.save
       flash[:notice] = "Task has been created."
       redirect_to dashboard_path
     else
-      flash[:danger] = "An error occurred."
+      flash.now[:danger] = "An error occurred."
       render new_task_path
     end
 
