@@ -67,3 +67,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'cancancan', '~> 1.10'
+gem 'exception_notification'
+gem 'redis', '~>3.2'
+gem 'resque', require: 'resque/server'
+gem 'resque-scheduler'

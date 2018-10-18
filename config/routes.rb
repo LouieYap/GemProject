@@ -10,5 +10,9 @@ Rails.application.routes.draw do
   get '/about', to: 'about#index'
   get '/dashboard', to: 'dashboard#index'
   root 'dashboard#index'
+  namespace :sysadmin do
+    mount Resque::Server.new, at: '/resque'
+  end
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
