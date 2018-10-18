@@ -22,32 +22,7 @@
 <% end %>
 
 <div class="modal modal-container" id="comment-modal" title="New Comment">
-  <div class="modal-header">
-    <button aria-hidden="true" class="close" data-dismiss="modal" type="button">×</button>
-    <h3 id="myModalLabel">New Comment</h3>
-  </div>
-  <div class="modal-body">
-    <%# form_for @comment, url: url_for(controller: 'comment', action: 'new') do |c| %>
-    <%= form_for @comment, :url => url_for(:controller => 'comment', :action => 'create') do |c| %>
-      <h1>Hey:</h1>
-      <p>
-    <%= c.text_area :description, size: "60x10" %>
-      </p>
-    <%= c.submit :class => 'btn btn-primary'%>
-    <% end %>
-    <div class="modal-footer">
-      <button aria-hidden="true" class="btn" data-dismiss="modal">Close</button>
-    </div>
-  </div>
-
+  <%= render :partial => '/comment/new', :new => @comment, locals: {:task => @task}  %>
 </div>
-
-<%# form_for @comment, url: url_for(controller: 'comment', action: 'new') do |c| %>
-<!--  <h1>Hey:</h1>-->
-<!--  <p>-->
-    <%#= c.text_area :description, size: "60x10" %>
-<!--  </p>-->
-  <%#= c.submit :class => 'btn btn-primary'%>
-<%# end %>
 
 <%= link_to "New Comment", "#comment-modal", :class => "btn btn-success", "data-toggle" => "modal" %>
