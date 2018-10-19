@@ -107,7 +107,7 @@ Rails.application.configure do
   config.middleware.use ExceptionNotification::Rack,
         :email => {
         :email_prefix => "gem-project",
-        :sender_address => %{"notifier" <notifier@your-app-name.com>},
-        :exception_recipients => ['<email-you-want-to-recieve-errors>']
+        :sender_address => %{"notifier" <notifier@gem.com>},
+        :exception_recipients => "louieY@magenic.com"
         }
 end
