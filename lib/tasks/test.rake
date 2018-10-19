@@ -1,7 +1,7 @@
 namespace :test do
   desc "My first task"
   task :first_task => :environment do
-    # DO SOMETHING
+    FailJob.perform_later
   end
 
 
