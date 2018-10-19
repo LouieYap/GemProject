@@ -68,7 +68,7 @@ ActiveRecord::Schema.define(version: 2018_10_05_060241) do
   end
 
   add_foreign_key "comments", "tasks"
-  add_foreign_key "comments", "users"
+  add_foreign_key "comments", "users",  column: "user_id"
   add_foreign_key "tasks", "projects"
   add_foreign_key "tasks", "users", column: "assigned_to_id"
   add_foreign_key "tasks", "users", column: "created_by_id"
