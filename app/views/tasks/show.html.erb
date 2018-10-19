@@ -1,4 +1,33 @@
 <h1>Edit Details</h1>
 
-<p><%=@task.name %></p>
-<p><%=@task.project.name %></p>
+<p>
+  <b>Name:  </b><%= @task.name %></br>
+  <b>Description:  </b><%= @task.description %></br>
+  <b>Due date:  </b><%= @task.due_date %></br>
+  <b>Project:  </b><%= @task.project.name %></br>
+  <b>Assigned to:  </b><%= @task.assigned_to.email %></br>
+  <b>Category:  </b><%= @task.category %></br>
+  <b>Status:  </b><%= @task.status %></br>
+  <b>Priority:  </b><%= @task.priority %></br>
+</p>
+
+<h1>Comments:</h1>
+
+<% @task.comments.each do |c| %>
+  <div class="well well-sm">
+    <b>Comment Id:  </b><%= c.id %></br>
+    <b>From:  </b><%= c.user.email %></br>
+    <b>Date:  </b><%= c.updated_at %></br></br></br>
+
+    <b>Message:  </b><%= c.description %></br></br></br>
+
+    <%= link_to "Edit", {:controller => :comment, :action => :edit, :id => c.id}, {:style => "border-bottom:2px solid #0062cc", :class => "btn-link"}%> |
+    <%= link_to "Delete", c, {:style => "border-bottom:2px solid #cc0000; color: #cc0000",  method: :delete, data: { confirm: "Are you sure you want to delete this comment?" } }%>
+  </div>
+<% end %>
+
+<div class="modal modal-container" id="comment-modal-create" title="New Comment">
+  <%= render :partial => '/comment/form', :new => @comment, locals: {:task => @task}  %>
+</div>
+
+<%= link_to "New Comment", "#comment-modal-create", :class => "btn btn-success", "data-toggle" => "modal" %>

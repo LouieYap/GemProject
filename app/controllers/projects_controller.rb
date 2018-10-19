@@ -18,7 +18,7 @@ class ProjectsController < SecureController
       redirect_to projects_path
 
     else
-      flash[:danger] = "An error occurred."
+      flash.now[:danger] = "An error occurred."
       render new_project_path
 
     end

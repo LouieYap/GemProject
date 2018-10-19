@@ -1,8 +1,8 @@
 <% if task.errors.any? %>
   <div id="error_explanation">
-    <h3><span class="text-danger"><%= pluralize(project.errors.count, "error") %> prohibited this project from being saved:</span></h3>
+    <h3><span class="text-danger"><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</span></h3>
     <ul>
-      <% project.errors.full_messages.each do |msg| %>
+      <% task.errors.full_messages.each do |msg| %>
         <span class="text-danger"><li><%= msg %></li></span>
       <% end %>
     </ul>
@@ -26,31 +26,31 @@
 
   <p>
     <%= t.label :project %><br>
-    <%= t.collection_select(:project_id, Project.all, :id, :name) %>
+    <%= t.collection_select(:project_id, Project.all, :id, :name, {:include_blank => '--Select Project--'}) %>
   </p>
 
   <% if defined?(edit) && edit && admin_user?%>
     <p>
       <%= t.label 'Assign To:' %><br>
-      <%= t.collection_select(:assigned_to_id, User.all, :id, :email) %>
+      <%= t.collection_select(:assigned_to_id, User.all, :id, :email, {:include_blank => '--Assign Task to--'}) %>
     </p>
   <% end %>
 
   <p>
     <%= t.label :category %><br>
-    <%= t.select :category, [['Development','development'],['Testing','testing'],['Release','release']] %>
+    <%= t.select :category, [['Development','development'],['Testing','testing'],['Release','release']], {:include_blank => '--Select Category--'} %>
   </p>
 
 
   <p>
     <%= t.label :status %><br>
-    <%= t.select :status, [['Open','open'],['Closed','closed'],['Deferred','deferred'],['Monitoring','monitoring']] %>
+    <%= t.select :status, [['Open','open'],['Closed','closed'],['Deferred','deferred'],['Monitoring','monitoring']], {:include_blank => '--Select Status--'} %>
   </p>
 
 
   <p>
     <%= t.label :priority %><br>
-    <%= t.select :priority, [['Minor','minor'],['Major','major'],['Severe','severe']] %>
+    <%= t.select :priority, [['Minor','minor'],['Major','major'],['Severe','severe']], {:include_blank => '--Select Priority--'} %>
   </p>
 
 
