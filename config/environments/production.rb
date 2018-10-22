@@ -108,6 +108,6 @@ Rails.application.configure do
         :email => {
         :email_prefix => "gem-project",
         :sender_address => %{"notifier" <notifier@gem.com>},
-        :exception_recipients => "louieY@magenic.com"
+        :exception_recipients => "louiey@magenic.com"
         }
 end
