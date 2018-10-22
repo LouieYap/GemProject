@@ -3,7 +3,10 @@ class SendNotificationsJob < ApplicationJob
 
   def perform(*args)
     puts("Sending notifications......")
-    GemMailer.send_notification_mail.deliver_now
-
+    Notification.where(:sent_at.nil?). each do |n|
+      CommentNotificationMailer.send_notification_mail(n.recipient).deliver_now
+      n.sent_at = DateTime.now
+      n.update
+    end
   end
 end
