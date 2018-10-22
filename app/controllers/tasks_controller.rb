@@ -17,7 +17,8 @@ class TasksController < ApplicationController
 
     if @task.save!
       flash[:notice] = "Task has been created."
-
+      notification = Notification.new(recipient: current_user.email)
+      notification.save
     else
       flash[:danger] = "An error occurred."
     end
