@@ -7,7 +7,7 @@ class SendNotificationsJob < ApplicationJob
       puts "RECIPIENT LOUIE: " + n.recipient
       CommentNotificationMailer.send_notification_mail(n.recipient).deliver_now
       n.sent_at = DateTime.now
-      n.update(n.sent_at)
+      n.save
     end
   end
 end
