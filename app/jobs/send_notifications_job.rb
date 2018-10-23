@@ -4,7 +4,7 @@ class SendNotificationsJob < ApplicationJob
   def perform()
     puts("Sending notifications......")
     Notification.all.each do |n|
-      puts n.recipient
+      puts "RECIPIENT LOUIE: " + n.recipient
       CommentNotificationMailer.send_notification_mail(n.recipient).deliver_now
      # n.sent_at = DateTime.now
      # n.update
