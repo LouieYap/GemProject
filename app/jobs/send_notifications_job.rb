@@ -3,11 +3,11 @@ class SendNotificationsJob < ApplicationJob
 
   def perform()
     puts("Sending notifications......")
-    Notification.all.each do |n|
+    Notification.where(:sent_at.nil?).each do |n|
       puts "RECIPIENT LOUIE: " + n.recipient
       CommentNotificationMailer.send_notification_mail(n.recipient).deliver_now
-     # n.sent_at = DateTime.now
-     # n.update
+      n.sent_at = DateTime.now
+      n.update(n.sent_at)
     end
   end
 end
