@@ -3,7 +3,7 @@ class TestJob < ApplicationJob
 
   def perform(*args)
     puts "starting TestJob"
-    sleep(10.seconds)
+    sleep(1.minutes)
     puts "completed TestJob"
   end
 end
