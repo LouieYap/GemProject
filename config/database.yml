@@ -85,7 +85,5 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  <<: *default
-  database: GemProject_production
-  username: GemProject
-  password: <%= ENV['GEMPROJECT_DATABASE_PASSWORD'] %>
+<<: *default
+url: <%= ENV['DATABASE_URL'] %>

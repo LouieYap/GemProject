@@ -63,7 +63,7 @@ Rails.application.configure do
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "GemProject_#{Rails.env}"
 
-  config.action_mailer.perform_caching = false
+  #config.action_mailer.perform_caching = false
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
@@ -91,4 +91,24 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.perform_caching = true
+  config.action_mailer.smtp_settings = {
+      user_name: ENV['SMTP_USERNAME'],
+      password: ENV['SMTP_PASSWORD'],
+      address: ENV['SMTP_ADDRESS'],
+      port: ENV['SMTP_PORT'],
+      domain: ENV['SMTP_DOMAIN'],
+      authentication: :plain,
+      enable_starttls_auto: true,
+  }
+
+  config.middleware.use ExceptionNotification::Rack,
+  :email => {
+      :email_prefix => "[therorproject]",
+      :sender_address => %{"notifier" <notifier@ytherorproject.com>},
+      :exception_recipients => ['<ronyanf@magenic.com>']
+  }
 end
