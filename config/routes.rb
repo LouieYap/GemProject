@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   namespace :sysadmin do
     mount Resque::Server.new, at: '/resque'
   end
-  
+
   devise_for :users
   resources :projects
   resources :tasks
