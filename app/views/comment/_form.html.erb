@@ -1,18 +1,29 @@
-<div class="modal-header">
-  <button aria-hidden="true" class="close" data-dismiss="modal" type="button">×</button>
-  <h3 id="myModalLabel">New Comment</h3>
-</div>
+
 <div class="modal-body">
   <% if @comment.id.blank? %>
     <%= form_for @comment, :url => url_for(:controller => 'comment' ) do |c| %>
+      <div class="modal-header">
+        <button aria-hidden="true" class="close" data-dismiss="modal" type="button">×</button>
+        <h3 id="myModalLabel">New Comment</h3>
+      </div>
       <b>Task Id Create: </b><%= task.id %></br>
       <b>Task Name: </b><%= task.name %>
       <p>
         <%= c.hidden_field :task_id, :value => task.id %>
         <%= c.text_area :description, size: "60x10" %>
       </p>
+      <b>Attached Files: </b></br>
+      <% @comment.comment_files.each do |cf| %>
+        <b>Attachment: </b><%= cf.filename %></br>
+      <% end %>
+      <p>
+        <%= file_field c, :comment_files, :multiple => true %><br>
+      </p>
       <%= c.submit :class => 'btn btn-primary'%>
     <% end %>
+    <div class="modal-footer">
+      <button aria-hidden="true" class="btn" data-dismiss="modal">Close</button>
+    </div>
   <% else %>
     <%= form_for  @comment, :url => url_for(:controller => 'comment', :method => :post, :action => :update) do |c| %>
       <b>Task Id Edit: </b><%= task.id %></br>
@@ -21,11 +32,17 @@
         <%= c.hidden_field :task_id, :value => task.id %>
         <%= c.text_area :description, size: "60x10" %>
       </p>
+      <b>Attached Files: </b></br>
+      <% @comment.comment_files.each do |cf| %>
+        <%= link_to cf.filename %> | <%= link_to "delete", comment_attachment_delete_path(:id => cf.id), {:style => "border-bottom:2px solid #0062cc", :class => "btn-link", data: { confirm: "Are you sure you want to delete this file?" }} %></br>
+        <%= link_to "Delete", comment_attachment_path({task_id: @comment.task, id: cf.id}), :method => 'delete', :style => "border-bottom:2px solid #0062cc", :class => "btn-link", data: { confirm: "Are you sure you want to delete this file?" } %>
+    <% end %>
+      <p>
+        <%= c.file_field :comment_files, :multiple => true %><br>
+      </p>
       <%= c.submit :class => 'btn btn-primary'%>
     <% end %>
   <% end %>
 
-  <div class="modal-footer">
-    <button aria-hidden="true" class="btn" data-dismiss="modal">Close</button>
-  </div>
+
 </div>

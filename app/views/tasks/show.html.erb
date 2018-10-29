@@ -9,6 +9,12 @@
   <b>Category:  </b><%= @task.category %></br>
   <b>Status:  </b><%= @task.status %></br>
   <b>Priority:  </b><%= @task.priority %></br>
+  <%#= form_for @task do |t|%>
+<!--    <p>-->
+<!--      <%#= t.label :task_file %><br>-->
+<!--      <%#= t.file_field :task_file, :multiple => true %><br>-->
+<!--    </p>-->
+  <%# end %>
 </p>
 
 <h1>Comments:</h1>
@@ -22,7 +28,8 @@
     <b>Message:  </b><%= c.description %></br></br></br>
 
     <%= link_to "Edit", {:controller => :comment, :action => :edit, :id => c.id}, {:style => "border-bottom:2px solid #0062cc", :class => "btn-link"}%> |
-    <%= link_to "Delete", c, {:style => "border-bottom:2px solid #cc0000; color: #cc0000",  method: :delete, data: { confirm: "Are you sure you want to delete this comment?" } }%>
+    <%= link_to "Delete", c, {:style => "border-bottom:2px solid #cc0000; color: #cc0000",  method: :delete, data: { confirm: "Are you sure you want to delete this comment?" }  }%> |
+    <%= link_to "View Attachment", {:controller => :comment, :action => :edit, :id => c.id} %>
   </div>
 <% end %>
 

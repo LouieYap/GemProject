@@ -32,3 +32,14 @@ local:
 #   service: Mirror
 #   primary: local
 #   mirrors: [ amazon, google, microsoft ]
+
+# Prep config for AWS
+# amazon:
+#  service: S3
+#  access_key_id: ""
+#  secret_access_key: ""
+
+
+
+
+
