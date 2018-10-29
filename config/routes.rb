@@ -2,6 +2,11 @@ Rails.application.routes.draw do
   namespace :admin do
     get 'application/index'
   end
+
+  namespace :sysadmin do
+    mount Resque::Server.new, at: '/resque'
+  end
+  
   devise_for :users
   resources :projects
   resources :tasks
